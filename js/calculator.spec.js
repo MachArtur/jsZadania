@@ -6,7 +6,7 @@ describe('calculator module test', function () {
         // given
         var a = 1, b = 4, result;
         // when
-        result = CalculatorModule.add(a, b);
+        result = calculatorModule.add(a, b);
         // then 
         expect(result).toBe(5);
     });
@@ -15,7 +15,7 @@ describe('calculator module test', function () {
         // given
         var a = 5, b = 4, result;
         // when
-        result = CalculatorModule.sub(a, b);
+        result = calculatorModule.sub(a, b);
         // then 
         expect(result).toBe(1);
     });
@@ -24,7 +24,7 @@ describe('calculator module test', function () {
         // given
         var a = 5, b = 2, result;
         // when
-        result = CalculatorModule.devide(a, b);
+        result = calculatorModule.devide(a, b);
         // then 
         expect(result).toBe(2.5);
     });
@@ -33,7 +33,7 @@ describe('calculator module test', function () {
         // given
         var a = 5, b = 4, result;
         // when
-        result = CalculatorModule.multiplay(a, b);
+        result = calculatorModule.multiplay(a, b);
         // then 
         expect(result).toBe(20);
     });
@@ -42,7 +42,7 @@ describe('calculator module test', function () {
         // given
         var a = 5, result;
         // when
-        result = CalculatorModule.factorial(a);
+        result = calculatorModule.factorial(a);
         // then 
         expect(result).toBe(120);
     });
@@ -51,35 +51,35 @@ describe('calculator module test', function () {
         //given
         var a = 'one', b = 1, result;
         //then
-        expect(function () { CalculatorModule.add(a, b); }).toThrow(new TypeError("Wrong type"));
+        expect(function () { calculatorModule.add(a, b); }).toThrow(new TypeError("Wrong type"));
     });
 
     it('should return error if given negative number in factorial', function () {
         //given
         var a = -1;
         //then
-        expect(function () { CalculatorModule.factorial(a); }).toThrow(new RangeError("The number is out of range"));
+        expect(function () { calculatorModule.factorial(a); }).toThrow(new RangeError("The number is out of range"));
     });
 
     it('should return error if given negative number in factorial recursive', function () {
         //given
         var a = -1;
         //then
-        expect(function () { CalculatorModule.factorialRecursive(a); }).toThrow(new RangeError("The number is out of range"));
+        expect(function () { calculatorModule.factorialRecursive(a); }).toThrow(new RangeError("The number is out of range"));
     });
 
         it('should return error if devide by 0', function () {
         //given
         var a = 4, b = 0;
         //then
-        expect(function () { CalculatorModule.devide(a, b); }).toThrow( new RangeError("Devide by 0 is not allowed."));
+        expect(function () { calculatorModule.devide(a, b); }).toThrow( new RangeError("Devide by 0 is not allowed."));
     });
 
             it('should return error in validation', function () {
         //given
         var a = 4, b = 0, aType = 'numeric', bType = 'numeric', validator;
         //when
-        validator = new TypeValidation;
+        validator = typeValidation();
         validator.addElement(a, aType);
         validator.addElement(b, bType);
         //then

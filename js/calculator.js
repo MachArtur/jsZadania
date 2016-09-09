@@ -1,7 +1,7 @@
 'use strict';
 
-var TypeValidation = function () {
-    var variables = [], types = [];
+var typeValidation = function () {
+    var variables = [], types = [] ;
 
     return {
         addElement: function (variable, type) {
@@ -10,7 +10,8 @@ var TypeValidation = function () {
         },
 
         validate: function () {
-            for (var i = 0; i < variables.length; i++) {
+            var i;
+            for (i = 0; i < variables.length; i++) {
                 if (typeof variables[i] !== types[i]) {
                     throw new TypeError("Wrong type");
                 }
@@ -19,11 +20,11 @@ var TypeValidation = function () {
     }
 };
 
-var CalculatorModule = (function () {
-    var pub = {}
+var calculatorModule = (function () {
+    var pub = {};
 
     pub.add = function (a, b) {
-        var validator = new TypeValidation;
+        var validator =  typeValidation();
         validator.addElement(a, 'number');
         validator.addElement(b, 'number');
         validator.validate();
@@ -31,7 +32,7 @@ var CalculatorModule = (function () {
     };
 
     pub.sub = function (a, b) {
-        var validator = new TypeValidation;
+        var validator =  typeValidation();
         validator.addElement(a, 'number');
         validator.addElement(b, 'number');
         validator.validate();
@@ -39,7 +40,7 @@ var CalculatorModule = (function () {
     };
 
     pub.devide = function (a, b) {
-        var validator = new TypeValidation;
+        var validator =  typeValidation();
         validator.addElement(a, 'number');
         validator.addElement(b, 'number');
         validator.validate();
@@ -50,7 +51,7 @@ var CalculatorModule = (function () {
     };
 
     pub.multiplay = function (a, b) {
-        var validator = new TypeValidation;
+        var validator =  typeValidation();
         validator.addElement(a, 'number');
         validator.addElement(b, 'number');
         validator.validate();
@@ -58,23 +59,23 @@ var CalculatorModule = (function () {
     };
 
     pub.factorial = function (a) {
-        var validator = new TypeValidation;
+        var validator =  typeValidation() , i, factorialResult;
         validator.addElement(a, 'number');
         validator.validate();
 
         if (a < 0) {
             throw new RangeError("The number is out of range");
         }
-        var i = 1, factorialResult = 1;
+        factorialResult = 1;
 
-        for (i; i <= a; i++) {
+        for (i = 1; i <= a; i++) {
             factorialResult *= i;
         }
         return factorialResult;
     };
 
     pub.factorialRecursive = function factorialRecursive(a) {
-        var validator = new TypeValidation;
+        var validator =  typeValidation();
         validator.addElement(a, 'number');
         validator.validate();
 
@@ -92,13 +93,13 @@ var CalculatorModule = (function () {
     return pub;
 })();
 
-CalculatorModule.add(5, 2);
-console.log(CalculatorModule.sub(5, 2));
-console.log(CalculatorModule.devide(5, 2));
-console.log(CalculatorModule.multiplay(5, 2));
+calculatorModule.add(5, 2);
+console.log(calculatorModule.sub(5, 2));
+console.log(calculatorModule.devide(5, 2));
+console.log(calculatorModule.multiplay(5, 2));
 try {
-    console.log(CalculatorModule.factorialRecursive("5"));
+    console.log(calculatorModule.factorialRecursive("5"));
 } catch (e) {
     console.log(":()")
 }
-console.log(CalculatorModule.factorial(5));
+console.log(calculatorModule.factorial(5));
